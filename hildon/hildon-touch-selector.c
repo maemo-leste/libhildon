@@ -174,8 +174,7 @@
 #include <stdlib.h>
 #include <glib.h>
 
-#include "hildon-gtk.h"
-
+#include "hildon-enum-types.h"
 #include "hildon-pannable-area.h"
 #include "hildon-touch-selector.h"
 #include "hildon-touch-selector-private.h"

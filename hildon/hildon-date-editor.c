@@ -80,6 +80,7 @@
 #include                                        <libintl.h>
 #include                                        <gdk/gdkkeysyms.h>
 
+#include                                        "hildon-gtk.h"
 #include                                        "hildon-date-editor.h"
 #include                                        "hildon-calendar-popup.h"
 #include                                        "hildon-defines.h"

@@ -42,6 +42,7 @@
 #include                                        <libintl.h>
 #include                                        <gdk/gdkkeysyms.h>
 
+#include                                        "hildon-gtk.h"
 #include                                        "hildon-find-toolbar.h"
 #include                                        "hildon-defines.h"
 #include                                        "hildon-find-toolbar-private.h"

@@ -72,6 +72,7 @@
 #include                                        <libintl.h>
 #include                                        <gdk/gdkkeysyms.h>
 
+#include                                        "hildon-gtk.h"
 #include                                        "hildon-time-editor.h"
 #include                                        "hildon-defines.h"
 #include                                        "hildon-time-picker.h"

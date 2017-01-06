@@ -59,6 +59,7 @@
 #include                                        <libintl.h>
 #include                                        <gdk/gdkkeysyms.h>
 
+#include                                        "hildon-gtk.h"
 #include                                        "hildon-number-editor.h"
 #include                                        "hildon-marshalers.h"
 #include                                        "hildon-defines.h"

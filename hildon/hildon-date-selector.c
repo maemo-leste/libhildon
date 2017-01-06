@@ -47,6 +47,7 @@
 #include <time.h>
 #include <langinfo.h>
 
+#include "hildon-gtk.h"
 #include "hildon-date-selector.h"
 
 #define HILDON_DATE_SELECTOR_GET_PRIVATE(obj)                           \

@@ -22,6 +22,7 @@
 #define                                         __HILDON_TOUCH_SELECTOR_H__
 
 #include                                        <gtk/gtk.h>
+#include                                        "hildon-gtk.h"
 #include                                        "hildon-touch-selector-column.h"
 
 G_BEGIN_DECLS

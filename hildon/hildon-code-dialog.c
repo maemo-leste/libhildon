@@ -43,6 +43,7 @@
 #include                                        <libintl.h>
 #include                                        <gdk/gdkkeysyms.h>
 
+#include                                        "hildon-gtk.h"
 #include                                        "hildon-code-dialog.h"
 #include                                        "hildon-defines.h"
 #include                                        "hildon-banner.h"

@@ -60,6 +60,7 @@
 #include                                        <glib/gprintf.h>
 #include                                        <gdk/gdkkeysyms.h>
 
+#include                                        "hildon-gtk.h"
 #include                                        "hildon-range-editor.h"
 #include                                        "hildon-banner.h"
 #include                                        "hildon-range-editor-private.h"

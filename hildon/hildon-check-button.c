@@ -69,6 +69,7 @@
  * </example>
  */
 
+#include                                        "hildon-enum-types.h"
 #include                                        "hildon-check-button.h"
 
 enum {
