@@ -4,7 +4,7 @@
 
 #include "hildon-gtk.h"
 #include "hildon-gtk-widget.h"
-#include "hildon-marshalers.h"
+#include "hildon-gtk-marshalers.h"
 
 #include <gdk/gdkx.h>
 #include <libintl.h>
@@ -747,7 +747,7 @@ hildon_subclass_gtk_widget(void)
                                       G_CALLBACK (gtk_widget_real_tap_and_hold_setup),
                                       NULL, NULL,
                                       /*FIXME -- OBJECT_POINTER_FLAGS*/
-                                      _hildon_marshal_VOID__OBJECT_UINT_FLAGS,
+                                      _hildon_gtk_marshal_VOID__OBJECT_UINT_FLAGS,
                                       G_TYPE_NONE, 3,
                                       G_TYPE_OBJECT,
                                       G_TYPE_POINTER,
@@ -772,7 +772,7 @@ hildon_subclass_gtk_widget(void)
                                       G_SIGNAL_RUN_LAST,
                                       G_CALLBACK (gtk_widget_real_tap_and_hold_query),
                                       gtk_widget_tap_and_hold_query_accumulator, NULL,
-                                      _hildon_marshal_BOOLEAN__BOXED,
+                                      _hildon_gtk_marshal_BOOLEAN__BOXED,
                                       G_TYPE_BOOLEAN, 1,
                                       GDK_TYPE_EVENT);
 }

@@ -43,6 +43,10 @@ AC_SUBST(GTK_LIBS)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_VERSION)
 
+PKG_CHECK_MODULES(X11, x11)
+AC_SUBST(X11_LIBS)
+AC_SUBST(X11_CFLAGS)
+
 # libcanberra is needed for the hildon-note sounds.
 
 PKG_CHECK_MODULES(CANBERRA, libcanberra)

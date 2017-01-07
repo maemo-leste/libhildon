@@ -16,6 +16,7 @@ libhildon_gtk_@API_VERSION_MAJOR@_la_LDFLAGS = $(HILDON_WIDGETS_LT_LDFLAGS)
 libhildon_gtk_@API_VERSION_MAJOR@_la_LIBADD = \
 		$(GTK_LIBS)			\
 		$(GCONF_LIBS) 			\
+		$(X11_LIBS)			\
 		@HILDON_LT_LDFLAGS@
 
 libhildon_gtk_@API_VERSION_MAJOR@_la_CFLAGS = \
@@ -31,7 +32,8 @@ libhildon_gtk_@API_VERSION_MAJOR@_la_SOURCES = \
 		hildon-gtk-textview.c		\
 		hildon-gtk-imcontext.c		\
 		hildon-gtk-dialog.c		\
-		hildon-gtk-widget.c
+		hildon-gtk-widget.c		\
+		hildon-gtk-marshalers.c
 
 libhildon_gtk_@API_VERSION_MAJOR@_includedir = \
 		$(includedir)/$(PACKAGE)-$(API_VERSION_MAJOR)/$(PACKAGE)
@@ -43,12 +45,13 @@ libhildon_@API_VERSION_MAJOR@_la_LIBADD = \
 	  	$(GCONF_LIBS) 			\
 	  	$(CANBERRA_LIBS)		\
 		@HILDON_LT_LDFLAGS@ 		\
-		libhildon-gtk-@API_VERSION_MAJOR@.la
+		libhildon-gtk-@API_VERSION_MAJOR@.la -lm
 
 libhildon_@API_VERSION_MAJOR@_la_CFLAGS	= \
 		$(GTK_CFLAGS) 			\
 		$(GCONF_CFLAGS) 		\
 		$(EXTRA_CFLAGS)			\
+		$(X11_LIBS)			\
 		$(CANBERRA_CFLAGS)
 
 libhildon_@API_VERSION_MAJOR@_la_SOURCES = \
@@ -228,7 +231,7 @@ noinst_HEADERS = hildon-calendar-popup-private.h 	\
 		hildon-touch-selector-private.h
 
 # Don't build the library until we have built the header that it needs:
-$(OBJECTS) $(libhildon_$(API_VERSION_MAJOR)_la_OBJECTS) $(libhildon_gtk_$(API_VERSION_MAJOR)_la_OBJECTS): hildon-enum-types.h hildon-marshalers.c hildon-marshalers.h
+$(OBJECTS) $(libhildon_$(API_VERSION_MAJOR)_la_OBJECTS): hildon-enum-types.h hildon-marshalers.c hildon-marshalers.h
 
 hildon-enum-types.h: @REBUILD@ $(libhildon_$(API_VERSION_MAJOR)_public_headers) Makefile
 	(cd $(srcdir) && glib-mkenums 	\
@@ -261,4 +264,13 @@ hildon-marshalers.h: hildon-marshalers.list
 hildon-marshalers.c: hildon-marshalers.list hildon-marshalers.h
 	echo '#include "hildon-marshalers.h"' >hildon-marshalers.c
 	glib-genmarshal --prefix _hildon_marshal --body hildon-marshalers.list >>hildon-marshalers.c
+
+$(libhildon_gtk_$(API_VERSION_MAJOR)_la_OBJECTS): hildon-gtk-marshalers.c hildon-gtk-marshalers.h
+
+hildon-gtk-marshalers.h: hildon-gtk-marshalers.list
+	glib-genmarshal --prefix _hildon_gtk_marshal --header hildon-gtk-marshalers.list >hildon-gtk-marshalers.h
+
+hildon-gtk-marshalers.c: hildon-gtk-marshalers.list hildon-gtk-marshalers.h
+	echo '#include "hildon-gtk-marshalers.h"' >hildon-gtk-marshalers.c
+	glib-genmarshal --prefix _hildon_gtk_marshal --body hildon-gtk-marshalers.list >>hildon-gtk-marshalers.c
 
