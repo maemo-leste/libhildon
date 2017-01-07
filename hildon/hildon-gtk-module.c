@@ -3,6 +3,7 @@
 #include "hildon-gtk-widget.h"
 #include "hildon-gtk-entry.h"
 #include "hildon-gtk-imcontext.h"
+#include "hildon-gtk-treeview.h"
 
 G_MODULE_EXPORT void gtk_module_init (gint * argc, gchar *** argv);
 

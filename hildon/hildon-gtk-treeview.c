@@ -29,12 +29,12 @@ enum
 
 static guint tree_view_signals [LAST_SIGNAL] = { 0 };
 
-/*static HildonUIMode
+static HildonUIMode
 get_ui_mode(GtkTreeView *tree_view)
 {
   return GPOINTER_TO_INT(g_object_get_data(G_OBJECT(tree_view),
                                            "hildon_ui_mode"));
-}*/
+}
 
 static void
 set_ui_mode(GtkTreeView *tree_view, HildonUIMode hildon_ui_mode)
@@ -99,15 +99,82 @@ hildon_tree_view_set_hildon_ui_mode (GtkTreeView   *tree_view,
     g_assert_not_reached ();
 }
 
+static void (*old_gtk_tree_view_set_property)(GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
+static void (*old_gtk_tree_view_get_property)(GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
+
+static void
+hildon_gtk_tree_view_set_property (GObject         *object,
+                                   guint            prop_id,
+                                   const GValue    *value,
+                                   GParamSpec      *pspec)
+{
+  GtkTreeView *tree_view;
+
+  tree_view = GTK_TREE_VIEW (object);
+
+  switch (prop_id)
+    {
+    case PROP_HILDON_UI_MODE:
+      hildon_tree_view_set_hildon_ui_mode (tree_view, g_value_get_enum (value));
+      break;
+    /*case PROP_ACTION_AREA_VISIBLE:
+      hildon_tree_view_set_action_area_visible (tree_view, g_value_get_boolean (value));
+      break;
+    case PROP_ACTION_AREA_ORIENTATION:
+      hildon_tree_view_set_action_area_orientation (tree_view, g_value_get_enum (value));
+      break;*/
+    default:
+      old_gtk_tree_view_set_property (object, prop_id, value, pspec);
+      break;
+    }
+}
+
+static void
+hildon_gtk_tree_view_get_property (GObject    *object,
+                                   guint       prop_id,
+                                   GValue     *value,
+                                   GParamSpec *pspec)
+{
+  GtkTreeView *tree_view;
+
+  tree_view = GTK_TREE_VIEW (object);
+
+  switch (prop_id)
+    {
+    case PROP_HILDON_UI_MODE:
+      g_value_set_enum (value, get_ui_mode(tree_view));
+      break;
+    /*case PROP_ACTION_AREA_VISIBLE:
+      g_value_set_boolean (value, tree_view->priv->action_area_visible);
+      break;
+    case PROP_ACTION_AREA_ORIENTATION:
+      g_value_set_enum (value, tree_view->priv->action_area_orientation);
+      break;*/
+    default:
+      old_gtk_tree_view_get_property (object, prop_id, value, pspec);
+      break;
+    }
+}
+
 void
 hildon_subclass_gtk_treeview(void)
 {
   GObjectClass *gobject_class;
   GtkTreeViewClass *klass;
+  GtkWidgetClass *widget_class;
+
   g_warning("hildon_subclass_gtk_treeview");
 
   klass = g_type_class_ref(GTK_TYPE_TREE_VIEW);
+  widget_class = GTK_WIDGET_CLASS(klass);
   gobject_class = G_OBJECT_CLASS(klass);
+
+  old_gtk_tree_view_set_property = gobject_class->set_property;
+  old_gtk_tree_view_get_property = gobject_class->get_property;
+  gobject_class->set_property = hildon_gtk_tree_view_set_property;
+  gobject_class->get_property = hildon_gtk_tree_view_get_property;
+
+  widget_class->focus = hildon_gtk_tree_view_focus;
 
   /**
    * GtkTreeView::row-insensitive:

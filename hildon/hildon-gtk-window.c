@@ -213,23 +213,23 @@ hildon_gtk_window_client_event (GtkWidget *widget, GdkEventClient *event)
 void
 hildon_subclass_gtk_window(void)
 {
-    GtkWindowClass *klass;
-    GtkWidgetClass *widget_class;
+  GtkWindowClass *klass;
+  GtkWidgetClass *widget_class;
 
-    g_warning("hildon_subclass_gtk_window");
-    quark_gtk_embedded = g_quark_from_static_string ("gtk-embedded");
+  g_warning("hildon_subclass_gtk_window");
+  quark_gtk_embedded = g_quark_from_static_string ("gtk-embedded");
 
-    klass = g_type_class_ref(GTK_TYPE_WINDOW);
-    widget_class = GTK_WIDGET_CLASS(klass);
+  klass = g_type_class_ref(GTK_TYPE_WINDOW);
+  widget_class = GTK_WIDGET_CLASS(klass);
 
-    old_gtk_window_client_event = widget_class->client_event;
-    widget_class->client_event = hildon_gtk_window_client_event;
+  old_gtk_window_client_event = widget_class->client_event;
+  widget_class->client_event = hildon_gtk_window_client_event;
 
-    g_object_class_install_property (G_OBJECT_CLASS(klass),
-                                     PROP_TEMPORARY,
-                                     g_param_spec_boolean ("temporary",
-                                                           P_("Temporary"),
-                                                           P_("Whether the window should be closed when it receives the _GTK_DELETE_TEMPORARIES ClientMessage"),
-                                                           FALSE,
-                                                           GTK_PARAM_READWRITE));
+  g_object_class_install_property (G_OBJECT_CLASS(klass),
+                                   PROP_TEMPORARY,
+                                   g_param_spec_boolean ("temporary",
+                                                         P_("Temporary"),
+                                                         P_("Whether the window should be closed when it receives the _GTK_DELETE_TEMPORARIES ClientMessage"),
+                                                         FALSE,
+                                                         GTK_PARAM_READWRITE));
 }

@@ -265,7 +265,7 @@ hildon-marshalers.c: hildon-marshalers.list hildon-marshalers.h
 	echo '#include "hildon-marshalers.h"' >hildon-marshalers.c
 	glib-genmarshal --prefix _hildon_marshal --body hildon-marshalers.list >>hildon-marshalers.c
 
-$(libhildon_gtk_$(API_VERSION_MAJOR)_la_OBJECTS): hildon-gtk-marshalers.c hildon-gtk-marshalers.h
+$(libhildon_gtk_$(API_VERSION_MAJOR)_la_OBJECTS): hildon-enum-types.h hildon-gtk-marshalers.c hildon-gtk-marshalers.h
 
 hildon-gtk-marshalers.h: hildon-gtk-marshalers.list
 	glib-genmarshal --prefix _hildon_gtk_marshal --header hildon-gtk-marshalers.list >hildon-gtk-marshalers.h
