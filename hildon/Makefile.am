@@ -24,7 +24,8 @@ libhildon_gtk_@API_VERSION_MAJOR@_la_CFLAGS = \
 		$(EXTRA_CFLAGS)
 
 libhildon_gtk_@API_VERSION_MAJOR@_la_SOURCES = \
-		hildon-gtk-module.c
+		hildon-gtk-module.c		\
+		hildon-gtk-window.c
 
 libhildon_gtk_@API_VERSION_MAJOR@_includedir = \
 		$(includedir)/$(PACKAGE)-$(API_VERSION_MAJOR)/$(PACKAGE)

@@ -161,10 +161,19 @@ hildon_gtk_hscale_new                           (void);
 GtkWidget*
 hildon_gtk_vscale_new                           (void);
 
-
 gboolean
 hildon_gtk_im_context_filter_event (GtkIMContext   *context,
                                     GdkEvent        *event);
+
+void
+gtk_window_set_is_temporary (GtkWindow *window,
+                             gboolean   setting);
+
+gboolean
+gtk_window_get_is_temporary (GtkWindow *window);
+
+void
+gtk_window_close_other_temporaries (GtkWindow *window);
 
 G_END_DECLS
 

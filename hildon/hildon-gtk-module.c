@@ -1,4 +1,5 @@
 #include "hildon-gtk.h"
+#include "hildon-gtk-window.h"
 
 G_MODULE_EXPORT void gtk_module_init (gint * argc, gchar *** argv);
 
@@ -58,7 +59,10 @@ hildon_gtk_im_context_filter_event (GtkIMContext   *context,
     return klass->filter_keypress (context, (GdkEventKey *)event);
 }
 
+
+
 G_MODULE_EXPORT void
 gtk_module_init (gint * argc, gchar *** argv)
 {
+    hildon_subclass_gtk_window();
 }
