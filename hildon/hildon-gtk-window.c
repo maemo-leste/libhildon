@@ -1,16 +1,30 @@
 #include "hildon-gtk.h"
 #include "hildon-gtk-window.h"
 
+#include <gtk/gtkprivate.h>
+
 #include <string.h>
 
 #ifdef GDK_WINDOWING_X11
 #include "gdk/gdkx.h"
 #endif
 
+#include <libintl.h>
+
+#ifdef ENABLE_NLS
+#define P_(String) g_dgettext("hildon-libs-properties",String)
+#else
+#define P_(String) (String)
+#endif
+
 static GdkAtom atom_temporaries = GDK_NONE;
 static GdkAtom atom_rcfiles = GDK_NONE;
 
 static GQuark quark_gtk_embedded = 0;
+
+enum {
+    PROP_TEMPORARY = 30 /* PROP_MNEMONICS_VISIBLE + 1 */
+};
 
 static void
 delete_if_temporary (GtkWidget *widget, GdkEventClient *client);
@@ -201,14 +215,21 @@ hildon_subclass_gtk_window(void)
 {
     GtkWindowClass *klass;
     GtkWidgetClass *widget_class;
-    GtkWidget *window;
 
+    g_warning("hildon_subclass_gtk_window");
     quark_gtk_embedded = g_quark_from_static_string ("gtk-embedded");
 
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    klass = GTK_WINDOW_GET_CLASS(window);
+    klass = g_type_class_ref(GTK_TYPE_WINDOW);
     widget_class = GTK_WIDGET_CLASS(klass);
 
     old_gtk_window_client_event = widget_class->client_event;
     widget_class->client_event = hildon_gtk_window_client_event;
+
+    g_object_class_install_property (G_OBJECT_CLASS(klass),
+                                     PROP_TEMPORARY,
+                                     g_param_spec_boolean ("temporary",
+                                                           P_("Temporary"),
+                                                           P_("Whether the window should be closed when it receives the _GTK_DELETE_TEMPORARIES ClientMessage"),
+                                                           FALSE,
+                                                           GTK_PARAM_READWRITE));
 }

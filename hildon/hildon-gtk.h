@@ -168,6 +168,13 @@ GtkWidget*
 hildon_gtk_vscale_new                           (void);
 
 /* GtkImContext */
+typedef enum
+{
+  GTK_IM_CONTEXT_CLIPBOARD_OP_COPY,
+  GTK_IM_CONTEXT_CLIPBOARD_OP_CUT,
+  GTK_IM_CONTEXT_CLIPBOARD_OP_PASTE
+} GtkIMContextClipboardOperation;
+
 gboolean
 hildon_gtk_im_context_filter_event (GtkIMContext   *context,
                                     GdkEvent        *event);
