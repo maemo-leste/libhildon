@@ -161,6 +161,11 @@ hildon_gtk_hscale_new                           (void);
 GtkWidget*
 hildon_gtk_vscale_new                           (void);
 
+
+gboolean
+hildon_gtk_im_context_filter_event (GtkIMContext   *context,
+                                    GdkEvent        *event);
+
 G_END_DECLS
 
 #endif /* __HILDON_GTK_H__ */

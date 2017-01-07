@@ -9,7 +9,25 @@ CLEANFILES = \
 
 EXTRA_DIST = hildon-marshalers.list
 
-lib_LTLIBRARIES = libhildon-@API_VERSION_MAJOR@.la
+lib_LTLIBRARIES = libhildon-gtk-@API_VERSION_MAJOR@.la libhildon-@API_VERSION_MAJOR@.la
+
+libhildon_gtk_@API_VERSION_MAJOR@_la_LDFLAGS = $(HILDON_WIDGETS_LT_LDFLAGS)
+
+libhildon_gtk_@API_VERSION_MAJOR@_la_LIBADD = \
+		$(GTK_LIBS)			\
+		$(GCONF_LIBS) 			\
+		@HILDON_LT_LDFLAGS@
+
+libhildon_gtk_@API_VERSION_MAJOR@_la_CFLAGS = \
+		$(GTK_CFLAGS) 			\
+		$(GCONF_CFLAGS) 		\
+		$(EXTRA_CFLAGS)
+
+libhildon_gtk_@API_VERSION_MAJOR@_la_SOURCES = \
+		hildon-gtk-module.c
+
+libhildon_gtk_@API_VERSION_MAJOR@_includedir = \
+		$(includedir)/$(PACKAGE)-$(API_VERSION_MAJOR)/$(PACKAGE)
 
 libhildon_@API_VERSION_MAJOR@_la_LDFLAGS = $(HILDON_WIDGETS_LT_LDFLAGS)
 
@@ -17,7 +35,8 @@ libhildon_@API_VERSION_MAJOR@_la_LIBADD = \
 		$(GTK_LIBS) 			\
 	  	$(GCONF_LIBS) 			\
 	  	$(CANBERRA_LIBS)		\
-	  	@HILDON_LT_LDFLAGS@
+		@HILDON_LT_LDFLAGS@ 		\
+		libhildon-gtk-@API_VERSION_MAJOR@.la
 
 libhildon_@API_VERSION_MAJOR@_la_CFLAGS	= \
 		$(GTK_CFLAGS) 			\
