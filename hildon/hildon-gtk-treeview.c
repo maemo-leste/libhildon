@@ -100,7 +100,7 @@ hildon_tree_view_set_hildon_ui_mode (GtkTreeView   *tree_view,
 }
 
 static void (*old_gtk_tree_view_set_property)(GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
-static void (*old_gtk_tree_view_get_property)(GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
+static void (*old_gtk_tree_view_get_property)(GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 
 static void
 hildon_gtk_tree_view_set_property (GObject         *object,
@@ -156,25 +156,42 @@ hildon_gtk_tree_view_get_property (GObject    *object,
     }
 }
 
+static GObject* (*old_gtk_tree_view_constructor)(GType type,
+                                                 guint n_construct_properties,
+                                                 GObjectConstructParam *construct_params) = NULL;
+
+static GObject*
+hildon_gtk_tree_view_constructor (GType type,
+                                  guint n_construct_properties,
+                                  GObjectConstructParam *construct_params)
+{
+   GObject * ret = old_gtk_tree_view_constructor(type,
+                                                 n_construct_properties,
+                                                 construct_params);
+
+   gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(ret), FALSE);
+   gtk_tree_view_set_show_expanders(GTK_TREE_VIEW(ret), FALSE);
+
+   return ret;
+}
+
 void
 hildon_subclass_gtk_treeview(void)
 {
   GObjectClass *gobject_class;
   GtkTreeViewClass *klass;
-  GtkWidgetClass *widget_class;
 
   g_warning("hildon_subclass_gtk_treeview");
 
   klass = g_type_class_ref(GTK_TYPE_TREE_VIEW);
-  widget_class = GTK_WIDGET_CLASS(klass);
   gobject_class = G_OBJECT_CLASS(klass);
 
   old_gtk_tree_view_set_property = gobject_class->set_property;
   old_gtk_tree_view_get_property = gobject_class->get_property;
   gobject_class->set_property = hildon_gtk_tree_view_set_property;
   gobject_class->get_property = hildon_gtk_tree_view_get_property;
-
-  widget_class->focus = hildon_gtk_tree_view_focus;
+  old_gtk_tree_view_constructor = gobject_class->constructor;
+  gobject_class->constructor = hildon_gtk_tree_view_constructor;
 
   /**
    * GtkTreeView::row-insensitive:
