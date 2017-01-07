@@ -48,6 +48,12 @@ typedef enum
 
 typedef enum
 {
+  HILDON_DIABLO,
+  HILDON_FREMANTLE
+} HildonMode;
+
+typedef enum
+{
   HILDON_UI_MODE_NORMAL,
   HILDON_UI_MODE_EDIT
 } HildonUIMode;
@@ -175,6 +181,40 @@ gtk_window_get_is_temporary (GtkWindow *window);
 void
 gtk_window_close_other_temporaries (GtkWindow *window);
 
+/* GtkEntry */
+HildonGtkInputMode
+hildon_gtk_entry_get_input_mode (GtkEntry *entry);
+
+void
+hildon_gtk_entry_set_input_mode (GtkEntry           *entry,
+                                 HildonGtkInputMode  mode);
+
+void
+hildon_gtk_entry_set_placeholder_text (GtkEntry    *entry,
+                                       const gchar *placeholder_text);
+
+const gchar *
+hildon_gtk_entry_get_placeholder_text (GtkEntry *entry);
+
+void
+hildon_gtk_entry_set_input_default (GtkEntry           *entry,
+                                    HildonGtkInputMode  mode);
+
+HildonGtkInputMode
+hildon_gtk_entry_get_input_default (GtkEntry *entry);
+
+/* GtkTreeView */
+HildonUIMode
+hildon_tree_view_get_hildon_ui_mode  (GtkTreeView *tree_view);
+
+void
+hildon_tree_view_set_hildon_ui_mode  (GtkTreeView *tree_view,
+                                      HildonUIMode mode);
+
+/* GtkTextView */
+void
+hildon_gtk_text_view_set_placeholder_text (GtkTextView *text_view,
+                                           const gchar *placeholder_text);
 G_END_DECLS
 
 #endif /* __HILDON_GTK_H__ */
