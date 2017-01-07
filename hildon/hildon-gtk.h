@@ -167,10 +167,15 @@ hildon_gtk_hscale_new                           (void);
 GtkWidget*
 hildon_gtk_vscale_new                           (void);
 
+/* GtkImContext */
 gboolean
 hildon_gtk_im_context_filter_event (GtkIMContext   *context,
                                     GdkEvent        *event);
 
+void
+hildon_gtk_im_context_hide (GtkIMContext *context);
+
+/* GtkWindow */
 void
 gtk_window_set_is_temporary (GtkWindow *window,
                              gboolean   setting);
@@ -215,6 +220,35 @@ hildon_tree_view_set_hildon_ui_mode  (GtkTreeView *tree_view,
 void
 hildon_gtk_text_view_set_placeholder_text (GtkTextView *text_view,
                                            const gchar *placeholder_text);
+
+/* GtkWidget */
+void
+hildon_gtk_widget_set_theme_size (GtkWidget      *widget,
+                                  HildonSizeType  size);
+
+void
+gtk_widget_tap_and_hold_setup (GtkWidget                *widget,
+                               GtkWidget                *menu,
+                               GtkCallback               func,
+                               GtkWidgetTapAndHoldFlags  flags);
+
+void
+gtk_widget_tap_and_hold_menu_position_top(GtkWidget *menu,
+                                          gint *x,
+                                          gint *y,
+                                          gboolean *push_in,
+                                          GtkWidget *widget);
+
+void
+gtk_widget_insensitive_press(GtkWidget *widget);
+
+/* GtkDialog */
+void
+gtk_dialog_set_padding (GtkDialog *dialog,
+                        guint top_padding,
+                        guint bottom_padding,
+                        guint left_padding,
+                        guint right_padding);
 G_END_DECLS
 
 #endif /* __HILDON_GTK_H__ */
