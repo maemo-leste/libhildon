@@ -28,7 +28,7 @@ libhildon_gtk_@API_VERSION_MAJOR@_la_SOURCES = \
 		hildon-gtk-module.c		\
 		hildon-gtk-window.c		\
 		hildon-gtk-entry.c		\
-		hildon-gtk-treeview.c		\
+		hildon-gtk-tree-view.c		\
 		hildon-gtk-textview.c		\
 		hildon-gtk-imcontext.c		\
 		hildon-gtk-dialog.c		\

@@ -1,5 +1,5 @@
 #include "hildon-gtk.h"
-#include "hildon-gtk-treeview.h"
+#include "hildon-gtk-tree-view.h"
 #include "hildon-gtk-marshalers.h"
 #include "hildon-enum-types.h"
 
@@ -176,12 +176,10 @@ hildon_gtk_tree_view_constructor (GType type,
 }
 
 void
-hildon_subclass_gtk_treeview(void)
+hildon_subclass_gtk_tree_view(void)
 {
   GObjectClass *gobject_class;
   GtkTreeViewClass *klass;
-
-  g_warning("hildon_subclass_gtk_treeview");
 
   klass = g_type_class_ref(GTK_TYPE_TREE_VIEW);
   gobject_class = G_OBJECT_CLASS(klass);
@@ -283,6 +281,6 @@ hildon_subclass_gtk_treeview(void)
                                                       P_("Determines the orientation of the action area."),
                                                       GTK_TYPE_ORIENTATION,
                                                       GTK_ORIENTATION_HORIZONTAL,
-                                                      GTK_PARAM_READWRITE));
+						      GTK_PARAM_READWRITE));
 }
 
