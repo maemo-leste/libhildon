@@ -256,6 +256,9 @@ gtk_dialog_set_padding (GtkDialog *dialog,
                         guint bottom_padding,
                         guint left_padding,
                         guint right_padding);
+
+G_MODULE_EXPORT void hildon_gtk_module_init (gint *argc, gchar ***argv);
+
 G_END_DECLS
 
 #endif /* __HILDON_GTK_H__ */
