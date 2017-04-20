@@ -216,7 +216,6 @@ hildon_subclass_gtk_window(void)
   GtkWindowClass *klass;
   GtkWidgetClass *widget_class;
 
-  g_warning("hildon_subclass_gtk_window");
   quark_gtk_embedded = g_quark_from_static_string ("gtk-embedded");
 
   klass = g_type_class_ref(GTK_TYPE_WINDOW);

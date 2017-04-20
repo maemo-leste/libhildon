@@ -658,7 +658,6 @@ hildon_subclass_gtk_widget(void)
 {
   GObjectClass *gobject_class;
   GtkWidgetClass *widget_class;
-  g_warning("hildon_subclass_gtk_widget");
 
   widget_class = g_type_class_ref(GTK_TYPE_WIDGET);
   gobject_class = G_OBJECT_CLASS(widget_class);

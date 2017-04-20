@@ -154,7 +154,6 @@ hildon_subclass_gtk_imcontext(void)
 {
   GObjectClass *gobject_class;
   GtkIMContextClass *klass;
-  g_warning("hildon_subclass_gtk_imcontext");
 
   klass = g_type_class_ref(GTK_TYPE_IM_MULTICONTEXT);
   gobject_class = G_OBJECT_CLASS(klass);

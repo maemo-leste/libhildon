@@ -319,7 +319,6 @@ hildon_subclass_gtk_entry(void)
   GObjectClass *gobject_class;
   GtkEntryClass *entry_class;
   GtkEntry *entry;
-  g_warning("hildon_subclass_gtk_entry");
 
   entry = GTK_ENTRY(gtk_entry_new());
   entry_class = GTK_ENTRY_GET_CLASS(entry);
