@@ -239,7 +239,7 @@ hildon_gtk_entry_get_input_default (GtkEntry *entry)
 
 
 static void (*old_gtk_entry_set_property)(GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
-static void (*old_gtk_entry_get_property)(GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec);
+static void (*old_gtk_entry_get_property)(GObject *object, guint prop_id, GValue *value, GParamSpec *pspec);
 
 static void
 hildon_gtk_entry_set_property (GObject         *object,
