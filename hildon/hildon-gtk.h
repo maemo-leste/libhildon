@@ -257,6 +257,26 @@ gtk_dialog_set_padding (GtkDialog *dialog,
                         guint left_padding,
                         guint right_padding);
 
+/* GtkIconView */
+typedef gboolean (* HildonIconViewRowHeaderFunc) (GtkTreeModel *model,
+                                                  GtkTreeIter *iter,
+                                                  gchar  **label,
+                                                  gpointer data);
+
+HildonUIMode
+hildon_icon_view_get_hildon_ui_mode (GtkIconView *icon_view);
+
+void
+hildon_icon_view_set_hildon_ui_mode (GtkIconView   *icon_view,
+                                     HildonUIMode   hildon_ui_mode);
+
+HildonIconViewRowHeaderFunc
+hildon_icon_view_get_row_header_func (GtkIconView *icon_view);
+void hildon_icon_view_set_row_header_func (GtkIconView *icon_view,
+                                           HildonIconViewRowHeaderFunc func,
+                                           gpointer data,
+                                           GDestroyNotify destroy);
+
 G_MODULE_EXPORT void hildon_gtk_module_init (gint *argc, gchar ***argv);
 
 G_END_DECLS

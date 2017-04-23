@@ -33,6 +33,7 @@ libhildon_gtk_@API_VERSION_MAJOR@_la_SOURCES = \
 		hildon-gtk-imcontext.c		\
 		hildon-gtk-dialog.c		\
 		hildon-gtk-widget.c		\
+		hildon-gtk-icon-view.c		\
 		hildon-gtk-marshalers.c
 
 libhildon_gtk_@API_VERSION_MAJOR@_includedir = \

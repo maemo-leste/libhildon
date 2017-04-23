@@ -2,9 +2,12 @@
 #include <config.h>
 #endif
 
+#include <gtk/gtkprivate.h>
+
 #include "hildon-gtk.h"
 #include "hildon-gtk-widget.h"
 #include "hildon-gtk-marshalers.h"
+#include "hildon-enum-types.h"
 
 #include <gdk/gdkx.h>
 #include <libintl.h>
@@ -773,4 +776,12 @@ hildon_subclass_gtk_widget(void)
                                       _hildon_gtk_marshal_BOOLEAN__BOXED,
                                       G_TYPE_BOOLEAN, 1,
                                       GDK_TYPE_EVENT);
+
+  gtk_widget_class_install_style_property (widget_class,
+                                           g_param_spec_enum ("hildon-mode",
+                                                              P_("Hildon Mode"),
+                                                              P_("The mode according to which widgets should behave"),
+                                                              HILDON_TYPE_MODE,
+                                                              HILDON_DIABLO,
+                                                              GTK_PARAM_READABLE));
 }
