@@ -9,35 +9,7 @@ CLEANFILES = \
 
 EXTRA_DIST = hildon-marshalers.list
 
-lib_LTLIBRARIES = libhildon-gtk-@API_VERSION_MAJOR@.la libhildon-@API_VERSION_MAJOR@.la
-
-libhildon_gtk_@API_VERSION_MAJOR@_la_LDFLAGS = $(HILDON_WIDGETS_LT_LDFLAGS)
-
-libhildon_gtk_@API_VERSION_MAJOR@_la_LIBADD = \
-		$(GTK_LIBS)			\
-		$(GCONF_LIBS) 			\
-		$(X11_LIBS)			\
-		@HILDON_LT_LDFLAGS@
-
-libhildon_gtk_@API_VERSION_MAJOR@_la_CFLAGS = \
-		$(GTK_CFLAGS) 			\
-		$(GCONF_CFLAGS) 		\
-		$(EXTRA_CFLAGS)
-
-libhildon_gtk_@API_VERSION_MAJOR@_la_SOURCES = \
-		hildon-gtk-module.c		\
-		hildon-gtk-window.c		\
-		hildon-gtk-entry.c		\
-		hildon-gtk-tree-view.c		\
-		hildon-gtk-textview.c		\
-		hildon-gtk-imcontext.c		\
-		hildon-gtk-dialog.c		\
-		hildon-gtk-widget.c		\
-		hildon-gtk-icon-view.c		\
-		hildon-gtk-marshalers.c
-
-libhildon_gtk_@API_VERSION_MAJOR@_includedir = \
-		$(includedir)/$(PACKAGE)-$(API_VERSION_MAJOR)/$(PACKAGE)
+lib_LTLIBRARIES = libhildon-@API_VERSION_MAJOR@.la
 
 libhildon_@API_VERSION_MAJOR@_la_LDFLAGS = $(HILDON_WIDGETS_LT_LDFLAGS)
 
@@ -45,8 +17,7 @@ libhildon_@API_VERSION_MAJOR@_la_LIBADD = \
 		$(GTK_LIBS) 			\
 	  	$(GCONF_LIBS) 			\
 	  	$(CANBERRA_LIBS)		\
-		@HILDON_LT_LDFLAGS@ 		\
-		libhildon-gtk-@API_VERSION_MAJOR@.la -lm
+		@HILDON_LT_LDFLAGS@ -lm
 
 libhildon_@API_VERSION_MAJOR@_la_CFLAGS	= \
 		$(GTK_CFLAGS) 			\
@@ -265,13 +236,3 @@ hildon-marshalers.h: hildon-marshalers.list
 hildon-marshalers.c: hildon-marshalers.list hildon-marshalers.h
 	echo '#include "hildon-marshalers.h"' >hildon-marshalers.c
 	glib-genmarshal --prefix _hildon_marshal --body hildon-marshalers.list >>hildon-marshalers.c
-
-$(libhildon_gtk_$(API_VERSION_MAJOR)_la_OBJECTS): hildon-enum-types.h hildon-gtk-marshalers.c hildon-gtk-marshalers.h
-
-hildon-gtk-marshalers.h: hildon-gtk-marshalers.list
-	glib-genmarshal --prefix _hildon_gtk_marshal --header hildon-gtk-marshalers.list >hildon-gtk-marshalers.h
-
-hildon-gtk-marshalers.c: hildon-gtk-marshalers.list hildon-gtk-marshalers.h
-	echo '#include "hildon-gtk-marshalers.h"' >hildon-gtk-marshalers.c
-	glib-genmarshal --prefix _hildon_gtk_marshal --body hildon-gtk-marshalers.list >>hildon-gtk-marshalers.c
-

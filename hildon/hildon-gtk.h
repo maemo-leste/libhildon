@@ -21,57 +21,6 @@
 
 G_BEGIN_DECLS
 
-typedef enum {
-  HILDON_SIZE_AUTO_WIDTH       = 0 << 0, /* set to automatic width */
-  HILDON_SIZE_HALFSCREEN_WIDTH = 1 << 0, /* set to 50% screen width */
-  HILDON_SIZE_FULLSCREEN_WIDTH = 2 << 0, /* set to 100% screen width */
-  HILDON_SIZE_AUTO_HEIGHT      = 0 << 2, /* set to automatic height */
-  HILDON_SIZE_FINGER_HEIGHT    = 1 << 2, /* set to finger height */
-  HILDON_SIZE_THUMB_HEIGHT     = 2 << 2, /* set to thumb height */
-  HILDON_SIZE_AUTO             = (HILDON_SIZE_AUTO_WIDTH | HILDON_SIZE_AUTO_HEIGHT)
-} HildonSizeType;
-
-typedef enum
-{
-  HILDON_GTK_INPUT_MODE_ALPHA             = 1 << 0,
-  HILDON_GTK_INPUT_MODE_NUMERIC           = 1 << 1,
-  HILDON_GTK_INPUT_MODE_SPECIAL           = 1 << 2,
-  HILDON_GTK_INPUT_MODE_HEXA              = 1 << 3,
-  HILDON_GTK_INPUT_MODE_TELE              = 1 << 4,
-  HILDON_GTK_INPUT_MODE_FULL              = (HILDON_GTK_INPUT_MODE_ALPHA | HILDON_GTK_INPUT_MODE_NUMERIC | HILDON_GTK_INPUT_MODE_SPECIAL),
-  HILDON_GTK_INPUT_MODE_NO_SCREEN_PLUGINS = 1 << 27,
-  HILDON_GTK_INPUT_MODE_MULTILINE         = 1 << 28,
-  HILDON_GTK_INPUT_MODE_INVISIBLE         = 1 << 29,
-  HILDON_GTK_INPUT_MODE_AUTOCAP           = 1 << 30,
-  HILDON_GTK_INPUT_MODE_DICTIONARY        = 1 << 31
-} HildonGtkInputMode;
-
-typedef enum
-{
-  HILDON_DIABLO,
-  HILDON_FREMANTLE
-} HildonMode;
-
-typedef enum
-{
-  HILDON_UI_MODE_NORMAL,
-  HILDON_UI_MODE_EDIT
-} HildonUIMode;
-
-typedef enum
-{
-  GTK_TAP_AND_HOLD_NONE         = 0,
-  GTK_TAP_AND_HOLD_PASS_PRESS   = 1 << 0,
-  GTK_TAP_AND_HOLD_NO_SIGNALS   = 1 << 1,
-  GTK_TAP_AND_HOLD_NO_INTERNALS = 1 << 2
-} GtkWidgetTapAndHoldFlags;
-
-typedef enum
-{
-  GTK_INVALID_INPUT_MAX_CHARS_REACHED,
-  GTK_INVALID_INPUT_MODE_RESTRICTION
-} GtkInvalidInputType;
-
 GtkWidget *
 hildon_gtk_menu_new                             (void);
 

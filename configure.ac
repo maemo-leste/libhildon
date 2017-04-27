@@ -214,7 +214,7 @@ AC_SUBST(EXTRA_CFLAGS)
 # includes all the low-level flags
 # FIXME Add esd and gconf flags
 HILDON_OBJ_CFLAGS="\$(CFLAGS) \$(GTK_CFLAGS) \$(CHECK_CFLAGS) \$(GCONF_CFLAGS) -I\$(top_builddir)/hildon/"
-HILDON_OBJ_LIBS="\$(top_builddir)/hildon/libhildon-\$(API_VERSION_MAJOR).la \$(top_builddir)/hildon/libhildon-gtk-\$(API_VERSION_MAJOR).la \$(GTK_LIBS) \$(GCONF_LIBS) \$(CHECK_LIBS) `pkg-config --libs gthread-2.0`"
+HILDON_OBJ_LIBS="\$(top_builddir)/hildon/libhildon-\$(API_VERSION_MAJOR).la \$(GTK_LIBS) \$(GCONF_LIBS) \$(CHECK_LIBS) `pkg-config --libs gthread-2.0`"
 AC_SUBST(HILDON_OBJ_CFLAGS)
 AC_SUBST(HILDON_OBJ_LIBS)
 
