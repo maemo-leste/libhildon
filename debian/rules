@@ -21,7 +21,7 @@ DEB_INSTALL_CHANGELOGS_libhildon1 := --no-act
 
 config.status: $(DEB_SRCDIR)/configure
 
-$(DEB_SRCDIR)/configure:
+makebuilddir/libhildon1::
 	AUTOGEN_SUBDIR_MODE=1 NOCONFIGURE=yes $(DEB_SRCDIR)/autogen.sh
 
 binary-post-install/libhildon1-examples::
