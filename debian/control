@@ -2,7 +2,7 @@ Source: libhildon
 Section: x11
 Priority: optional
 Maintainer: Claudio Saavedra <csaavedra@igalia.com>
-Build-Depends: debhelper (>= 5), libtool-bin, cdbs, libgtk2.0-dev, libcanberra-dev, libxi-dev, libxt-dev, libpng12-dev, libgconf2-dev, gtk-doc-tools, libgtk2.0-doc, libglib2.0-doc
+Build-Depends: debhelper (>= 9.20160114), libtool-bin, cdbs, libgtk2.0-dev, libcanberra-dev, libxi-dev, libxt-dev, libpng-dev, libgconf2-dev, gtk-doc-tools, libgtk2.0-doc, libglib2.0-doc
 Standards-Version: 3.6.0
 
 Package: libhildon1-dev
@@ -16,12 +16,6 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, osso-sounds-ui, hildon-libs-l10n-mr | hildon-libs-l10n-mr0, osso-system-lock-l10n-mr | osso-system-lock-l10n-mr0, hildon-fm-l10n-mr | hildon-fm-l10n-mr0
 Description: Hildon libraries
-
-Package: libhildon1-dbg
-Section: libdevel
-Architecture: any
-Depends: ${misc:Depends}, libhildon1 (= ${binary:Version})
-Description: Debug symbols for hildon libraries
 
 Package: libhildon1-examples
 Section: doc
