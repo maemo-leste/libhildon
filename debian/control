@@ -4,8 +4,8 @@ Priority: optional
 Maintainer: Claudio Saavedra <csaavedra@igalia.com>
 Build-Depends:
  debhelper (>= 10),
+ dh-exec,
  libtool-bin,
- cdbs,
  libgtk2.0-dev,
  libcanberra-dev,
  libxi-dev,
@@ -15,7 +15,7 @@ Build-Depends:
  gtk-doc-tools,
  libgtk2.0-doc,
  libglib2.0-doc,
-Standards-Version: 3.6.0
+Standards-Version: 4.3.0
 
 Package: libhildon1-dev
 Section: devel
