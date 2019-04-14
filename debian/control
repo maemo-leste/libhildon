@@ -3,7 +3,7 @@ Section: x11
 Priority: optional
 Maintainer: Claudio Saavedra <csaavedra@igalia.com>
 Build-Depends:
- debhelper (>= 9.20160114),
+ debhelper (>= 10),
  libtool-bin,
  cdbs,
  libgtk2.0-dev,
