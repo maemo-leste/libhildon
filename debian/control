@@ -20,6 +20,7 @@ Standards-Version: 4.3.0
 Package: libhildon1-dev
 Section: devel
 Architecture: any
+Multi-arch: same
 Depends:
  ${misc:Depends},
  libhildon1 (= ${binary:Version}),
@@ -32,6 +33,7 @@ Description: Hildon libraries development files
 Package: libhildon1
 Section: libs
 Architecture: any
+Multi-arch: same
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
@@ -44,6 +46,7 @@ Description: Hildon libraries
 Package: libhildon1-examples
 Section: doc
 Architecture: all
+Multi-arch: foreign
 Depends:
  ${misc:Depends},
  libhildon1-dev (>= ${binary:Version})
@@ -52,6 +55,7 @@ Description: Examples source file for hildon libraries
 Package: libhildon1-doc
 Section: doc
 Architecture: all
+Multi-arch: foreign
 Depends: ${misc:Depends}, lynx | www-browser
 Recommends: libgtk2.0-doc
 Description: Hildon libraries documentation
