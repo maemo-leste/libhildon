@@ -19,6 +19,8 @@
 
 #include                                        <gtk/gtk.h>
 
+#include                                        "maemo-gtk-compat.h"
+
 G_BEGIN_DECLS
 
 GtkWidget *

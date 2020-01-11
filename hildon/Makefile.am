@@ -88,7 +88,8 @@ libhildon_@API_VERSION_MAJOR@_la_SOURCES = \
 		hildon-gtk.c				\
 		hildon-dialog.c				\
 		hildon-main.c				\
-		hildon-live-search.c
+		hildon-live-search.c			\
+		maemo-gtk-compat.c
 
 libhildon_@API_VERSION_MAJOR@_built_public_headers  = \
 		hildon-enum-types.h			\
@@ -159,7 +160,8 @@ libhildon_@API_VERSION_MAJOR@_public_headers = \
 		hildon-version.h			\
 		hildon-main.h				\
 		hildon-live-search.h			\
-		hildon-stock.h
+		hildon-stock.h				\
+		maemo-gtk-compat.h
 
 libhildon_@API_VERSION_MAJOR@_include_HEADERS = \
 		$(libhildon_@API_VERSION_MAJOR@_public_headers)		\
