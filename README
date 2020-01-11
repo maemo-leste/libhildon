@@ -2,4 +2,4 @@ Building with stock GTK+
 ------------------------
 
 To build with stock GTK+ pass --with-maemo-gtk=no to the configure script.
-
+Note that in such case not all features will be supported.

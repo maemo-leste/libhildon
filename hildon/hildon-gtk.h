@@ -18,6 +18,7 @@
 #define                                         __HILDON_GTK_H__
 
 #include                                        <gtk/gtk.h>
+#include                                        "maemo-gtk-compat.h"
 
 G_BEGIN_DECLS
 

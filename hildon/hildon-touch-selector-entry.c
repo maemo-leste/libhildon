@@ -239,7 +239,9 @@ hildon_touch_selector_entry_init (HildonTouchSelectorEntry *self)
 {
   HildonTouchSelectorEntryPrivate *priv;
   GtkEntryCompletion *completion;
+#ifdef MAEMO_GTK
   HildonGtkInputMode input_mode;
+#endif
 
   priv = HILDON_TOUCH_SELECTOR_ENTRY_GET_PRIVATE (self);
 
@@ -247,6 +249,7 @@ hildon_touch_selector_entry_init (HildonTouchSelectorEntry *self)
 
   priv->entry = hildon_entry_new (HILDON_SIZE_FINGER_HEIGHT);
   gtk_entry_set_activates_default (GTK_ENTRY (priv->entry), TRUE);
+#ifdef MAEMO_GTK
   input_mode = hildon_gtk_entry_get_input_mode (GTK_ENTRY (priv->entry));
 
   /* Disable unsupported input modes. */
@@ -255,6 +258,7 @@ hildon_touch_selector_entry_init (HildonTouchSelectorEntry *self)
   input_mode &= ~HILDON_GTK_INPUT_MODE_DICTIONARY;
 
   hildon_gtk_entry_set_input_mode (GTK_ENTRY (priv->entry), input_mode);
+#endif
 
   completion = gtk_entry_completion_new ();
   gtk_entry_completion_set_inline_completion (completion, TRUE);
@@ -414,6 +418,7 @@ void
 hildon_touch_selector_entry_set_input_mode (HildonTouchSelectorEntry * selector,
                                             HildonGtkInputMode input_mode)
 {
+#ifdef MAEMO_GTK
   HildonTouchSelectorEntryPrivate *priv;
 
   g_return_if_fail (HILDON_IS_TOUCH_SELECTOR_ENTRY (selector));
@@ -424,6 +429,9 @@ hildon_touch_selector_entry_set_input_mode (HildonTouchSelectorEntry * selector,
   priv = HILDON_TOUCH_SELECTOR_ENTRY_GET_PRIVATE (selector);
 
   hildon_gtk_entry_set_input_mode (GTK_ENTRY (priv->entry), input_mode);
+#else
+  g_warning("hildon_touch_selector_entry_set_input_mode: no-op: hildon_gtk_entry_set_input_mode unsupported");
+#endif
 }
 
 /**
@@ -440,6 +448,7 @@ hildon_touch_selector_entry_set_input_mode (HildonTouchSelectorEntry * selector,
 HildonGtkInputMode
 hildon_touch_selector_entry_get_input_mode (HildonTouchSelectorEntry * selector)
 {
+#ifdef MAEMO_GTK
   HildonTouchSelectorEntryPrivate *priv;
 
   g_return_val_if_fail (HILDON_IS_TOUCH_SELECTOR_ENTRY (selector), HILDON_GTK_INPUT_MODE_ALPHA);
@@ -447,6 +456,10 @@ hildon_touch_selector_entry_get_input_mode (HildonTouchSelectorEntry * selector)
   priv = HILDON_TOUCH_SELECTOR_ENTRY_GET_PRIVATE (selector);
 
   return hildon_gtk_entry_get_input_mode (GTK_ENTRY (priv->entry));
+#else
+  g_warning("hildon_touch_selector_entry_get_input_mode: no-op: hildon_gtk_entry_get_input_mode unsupported");
+  return HILDON_GTK_INPUT_MODE_FULL;
+#endif
 }
 
 static void

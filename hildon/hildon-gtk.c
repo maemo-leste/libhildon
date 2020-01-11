@@ -75,8 +75,12 @@ static void
 button_common_init                              (GtkWidget      *button,
                                                  HildonSizeType  size)
 {
+#ifdef MAEMO_GTK
     /* Set requested size */
     hildon_gtk_widget_set_theme_size (button, size);
+#else
+    g_warning("button_common_init: ignoring size: hildon_gtk_widget_set_theme_size unsupported");
+#endif
 
     /* Set focus-on-click to FALSE by default */
     gtk_button_set_focus_on_click (GTK_BUTTON (button), FALSE);

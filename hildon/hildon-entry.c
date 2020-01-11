@@ -70,8 +70,12 @@ set_property                                    (GObject      *object,
         size = g_value_get_flags (value);
         /* If this is auto height, default to finger height. */
         if (!(size & (HILDON_SIZE_FINGER_HEIGHT | HILDON_SIZE_THUMB_HEIGHT)))
-          size |= HILDON_SIZE_FINGER_HEIGHT;
+            size |= HILDON_SIZE_FINGER_HEIGHT;
+#ifdef MAEMO_GTK
         hildon_gtk_widget_set_theme_size (GTK_WIDGET (object), size);
+#else
+        g_warning("hildon_button_set_property: no-op: hildon_gtk_widget_set_theme_size unsupported");
+#endif
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);

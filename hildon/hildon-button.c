@@ -147,7 +147,11 @@ hildon_button_set_property                      (GObject      *object,
         hildon_button_set_value (button, g_value_get_string (value));
         break;
     case PROP_SIZE:
+#ifdef MAEMO_GTK
         hildon_gtk_widget_set_theme_size (GTK_WIDGET (button), g_value_get_flags (value));
+#else
+        g_warning("hildon_button_set_property: no-op: hildon_gtk_widget_set_theme_size unsupported");
+#endif
         break;
     case PROP_ARRANGEMENT:
         hildon_button_set_arrangement (button, g_value_get_enum (value));

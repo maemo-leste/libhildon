@@ -17,8 +17,6 @@ EXAMPLES				= hildon-window-example				\
 					  hildon-find-toolbar-example			\
 					  hildon-edit-toolbar-example			\
 					  hildon-wizard-dialog-example			\
-					  hildon-live-search-example			\
-					  hildon-live-search-grid-example		\
 					  hildon-pannable-area-tree-view-example	\
 					  hildon-pannable-area-tuning-example		\
 					  hildon-pannable-area-scroll-jump-example	\
@@ -45,8 +43,10 @@ EXAMPLES				= hildon-window-example				\
 					  hildon-remote-texture-example			\
 					  hildon-gtk-window-take-screenshot-sync
 if USE_MAEMO_GTK
-MAEMO_GTK_EXAMPLES                      = hildon-pannable-area-touch-list-example	\
-					  hildon-pannable-area-touch-grid-example
+MAEMO_GTK_EXAMPLES  			= hildon-pannable-area-touch-list-example	\
+					  hildon-pannable-area-touch-grid-example 	\
+					  hildon-live-search-example			\
+					  hildon-live-search-grid-example
 else
 MAEMO_GTK_EXAMPLES                      =
 endif
