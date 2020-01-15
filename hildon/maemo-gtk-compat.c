@@ -19,6 +19,7 @@
  * 02110-1301 USA
  *
  */
+
 #ifndef MAEMO_GTK
 #include <gtk/gtk.h>
 

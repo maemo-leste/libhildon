@@ -76,13 +76,13 @@ typedef enum {
  * but requires a patched version of Gtk+. It was added upstream in Gtk 3.2.
  * Therefore, for a non-Maemo version of Gtk+ we expose dummy functions. */
 void
-hildon_gtk_entry_set_placeholder_text           (GtkEntry *entry,
+hildon_gtk_entry_set_placeholder_text           (GtkEntry    *entry,
                                                  const gchar *text);
 
 void
-hildon_gtk_text_view_set_placeholder_text       (GtkEntry *text_view,
-                                                 const gchar    *text);
+hildon_gtk_text_view_set_placeholder_text       (GtkEntry    *text_view,
+                                                 const gchar *text);
 
 #endif
 
-#endif // __MAEMOGTKCOMPAT_H__
+#endif                                          /* __MAEMOGTKCOMPAT_H__ */
