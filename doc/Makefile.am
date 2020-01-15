@@ -55,7 +55,7 @@ INCLUDES 					= $(GTK_CFLAGS) -I$(top_srcdir)
 
 MKDB_OPTIONS					=--sgml-mode --output-format=xml --default-includes=hildon/hildon.h
 
-GTKDOC_CFLAGS 					= $(HILDON_OBJ_CFLAGS)
+GTKDOC_CFLAGS 					= $(HILDON_OBJ_CFLAGS) $(MAEMO_GTK)
 
 GTKDOC_LIBS 					= $(HILDON_OBJ_LIBS)
 
