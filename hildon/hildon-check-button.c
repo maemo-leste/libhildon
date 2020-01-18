@@ -214,7 +214,11 @@ set_property                                    (GObject      *object,
     switch (prop_id)
     {
     case PROP_SIZE:
+#ifdef MAEMO_GTK
         hildon_gtk_widget_set_theme_size (GTK_WIDGET (object), g_value_get_flags (value));
+#else
+        g_warning ("set_property: no-op: hildon_gtk_widget_set_theme_size unsupported");
+#endif
         break;
     case PROP_ACTIVE:
         hildon_check_button_set_active (HILDON_CHECK_BUTTON (object), g_value_get_boolean (value));

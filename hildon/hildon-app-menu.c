@@ -187,9 +187,11 @@ hildon_app_menu_insert                          (HildonAppMenu *menu,
 
     priv = HILDON_APP_MENU_GET_PRIVATE(menu);
 
+#ifdef MAEMO_GTK
     /* Force widget size */
     hildon_gtk_widget_set_theme_size (GTK_WIDGET (item),
                                       HILDON_SIZE_FINGER_HEIGHT | HILDON_SIZE_AUTO_WIDTH);
+#endif
 
     /* Add the item to the menu */
     g_object_ref_sink (item);
@@ -297,9 +299,11 @@ hildon_app_menu_add_filter                      (HildonAppMenu *menu,
 
     priv = HILDON_APP_MENU_GET_PRIVATE(menu);
 
+#ifdef MAEMO_GTK
     /* Force widget size */
     hildon_gtk_widget_set_theme_size (GTK_WIDGET (filter),
                                       HILDON_SIZE_FINGER_HEIGHT | HILDON_SIZE_AUTO_WIDTH);
+#endif
 
     /* Add the filter to the menu */
     g_object_ref_sink (filter);

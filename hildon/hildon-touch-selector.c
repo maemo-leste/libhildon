@@ -2780,6 +2780,7 @@ gboolean
 hildon_touch_selector_set_hildon_ui_mode        (HildonTouchSelector *selector,
                                                  HildonUIMode         mode)
 {
+#ifdef MAEMO_GTK
   gint num = 0;
   GSList *iter = NULL;
   HildonTouchSelectorColumn *column = NULL;
@@ -2811,6 +2812,10 @@ hildon_touch_selector_set_hildon_ui_mode        (HildonTouchSelector *selector,
   selector->priv->hildon_ui_mode = mode;
 
   return TRUE;
+#else
+  g_warning ("hildon_touch_selector_set_hildon_ui_mode: no-op: hildon_tree_view_set_hildon_ui_mode unsupported");
+  return FALSE;
+#endif
 }
 
 /**

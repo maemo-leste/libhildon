@@ -162,11 +162,13 @@ hildon_text_view_button_press_event             (GtkWidget        *widget,
 
     gtk_widget_grab_focus (widget);
 
+#ifdef MAEMO_GTK
     if (GTK_TEXT_VIEW (widget)->editable &&
         hildon_gtk_im_context_filter_event (GTK_TEXT_VIEW (widget)->im_context, (GdkEvent*)event)) {
         GTK_TEXT_VIEW (widget)->need_im_reset = TRUE;
         return TRUE;
     }
+#endif
 
     if (event->button == 1 && event->type == GDK_BUTTON_PRESS) {
         priv->x = event->x;
@@ -212,11 +214,13 @@ hildon_text_view_button_release_event           (GtkWidget        *widget,
     GtkTextIter iter;
     gint x, y;
 
+#ifdef MAEMO_GTK
     if (text_view->editable &&
         hildon_gtk_im_context_filter_event (text_view->im_context, (GdkEvent*)event)) {
         text_view->need_im_reset = TRUE;
         return TRUE;
     }
+#endif
 
     if (event->button == 1 && event->type == GDK_BUTTON_RELEASE &&
         !priv->selection_movement) {
