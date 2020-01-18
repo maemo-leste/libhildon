@@ -61,7 +61,12 @@ ALL_LINGUAS="en_GB"
 AC_SUBST(ALL_LINGUAS) 
 AM_GLIB_GNU_GETTEXT
 
-GTK_DOC_CHECK([1.3])
+m4_ifdef([GTK_DOC_CHECK], [
+    GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+],[
+    AM_CONDITIONAL([ENABLE_GTK_DOC], false)
+])
+
 
 localedir=${datadir}/locale
 
