@@ -1,3 +1,2 @@
-#!/usr/bin/dh-exec
 examples/*.c /usr/share/doc/libhildon1-examples/examples
-examples/Makefile.static => /usr/share/doc/libhildon1-examples/examples/Makefile
+examples/Makefile.static /usr/share/doc/libhildon1-examples/examples
