@@ -26,6 +26,14 @@ libhildon_@API_VERSION_MAJOR@_la_CFLAGS	= \
 		$(X11_LIBS)			\
 		$(CANBERRA_CFLAGS)
 
+if USE_MAEMO_GTK
+SOURCES_COMPAT =
+HEADERS_COMPAT =
+else
+SOURCES_COMPAT = maemo-gtk-compat.c
+HEADERS_COMPAT = maemo-gtk-compat.h
+endif
+
 libhildon_@API_VERSION_MAJOR@_la_SOURCES = \
 		hildon-private.c			\
 		hildon-controlbar.c 			\
@@ -89,7 +97,7 @@ libhildon_@API_VERSION_MAJOR@_la_SOURCES = \
 		hildon-dialog.c				\
 		hildon-main.c				\
 		hildon-live-search.c			\
-		maemo-gtk-compat.c
+		$(SOURCES_COMPAT)
 
 libhildon_@API_VERSION_MAJOR@_built_public_headers  = \
 		hildon-enum-types.h			\
@@ -161,7 +169,7 @@ libhildon_@API_VERSION_MAJOR@_public_headers = \
 		hildon-main.h				\
 		hildon-live-search.h			\
 		hildon-stock.h				\
-		maemo-gtk-compat.h
+		$(HEADERS_COMPAT)
 
 libhildon_@API_VERSION_MAJOR@_include_HEADERS = \
 		$(libhildon_@API_VERSION_MAJOR@_public_headers)		\

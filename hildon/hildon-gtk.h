@@ -19,7 +19,9 @@
 
 #include                                        <gtk/gtk.h>
 
+#ifndef MAEMO_GTK
 #include                                        "maemo-gtk-compat.h"
+#endif
 
 G_BEGIN_DECLS
 
