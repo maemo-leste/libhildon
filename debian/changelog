@@ -1,3 +1,9 @@
+libhildon (2.2.28) unstable; urgency=medium
+
+  * Port to Debian Buster
+
+ -- Arthur Demchenkov <spinal.by@gmail.com>  Sat, 08 Feb 2020 12:15:28 +0300
+
 libhildon (2.2.26.1-1) unstable; urgency=medium
 
   * Fix a regression introduced in 2.2.26.
