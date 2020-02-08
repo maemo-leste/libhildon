@@ -4,6 +4,10 @@
 
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,--as-needed
 
+override_dh_autoreconf:
+	gtkdocize --copy --docdir doc/ && \
+	dh_autoreconf
+
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		--enable-maintainer-mode \

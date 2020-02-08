@@ -93,6 +93,8 @@ aclocal $ACLOCAL_FLAGS || {
   exit 1
 }
 
+gtkdocize || exit 1
+
 if grep "^AM_CONFIG_HEADER" configure.ac >/dev/null; then
   echo "Running autoheader..."
   autoheader || { echo "**Error**: autoheader failed."; exit 1; }
