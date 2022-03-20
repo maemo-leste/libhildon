@@ -46,7 +46,7 @@ endif
 check_test_SOURCES		       += test_suites.h				\
 					  check_utils.h
 
-check_test_LDADD			= $(HILDON_OBJ_LIBS)
+check_test_LDADD			= $(HILDON_OBJ_LIBS) $(X11_LIBS)
 check_test_LDFLAGS			= -module -avoid-version
 check_test_CFLAGS			= $(HILDON_OBJ_CFLAGS) 			\
 					  $(EXTRA_CFLAGS)
