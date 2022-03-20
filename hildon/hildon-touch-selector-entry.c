@@ -72,7 +72,6 @@ _text_column_modified (GObject *pspec, GParamSpec *gobject, gpointer data);
 struct _HildonTouchSelectorEntryPrivate {
   gulong signal_id;
   GtkWidget *entry;
-  GIConv converter;
   gboolean smart_match;
 };
 
@@ -144,7 +143,6 @@ hildon_touch_selector_entry_finalize (GObject *object)
 {
   HildonTouchSelectorEntryPrivate *priv;
   priv = HILDON_TOUCH_SELECTOR_ENTRY_GET_PRIVATE (object);
-  g_iconv_close (priv->converter);
   G_OBJECT_CLASS (hildon_touch_selector_entry_parent_class)->finalize (object);
 }
 
@@ -244,8 +242,6 @@ hildon_touch_selector_entry_init (HildonTouchSelectorEntry *self)
 #endif
 
   priv = HILDON_TOUCH_SELECTOR_ENTRY_GET_PRIVATE (self);
-
-  priv->converter = g_iconv_open ("ascii//translit", "utf-8");
 
   priv->entry = hildon_entry_new (HILDON_SIZE_FINGER_HEIGHT);
   gtk_entry_set_activates_default (GTK_ENTRY (priv->entry), TRUE);
@@ -476,7 +472,7 @@ entry_on_text_changed (GtkEditable * editable,
   gchar *text;
   gboolean found = FALSE;
   gint text_column = -1;
-  gchar *ascii_prefix;
+  gchar *folded_prefix;
   gint prefix_len;
   gboolean found_suggestion = FALSE;
 
@@ -500,8 +496,8 @@ entry_on_text_changed (GtkEditable * editable,
   }
 
   if (priv->smart_match) {
-    ascii_prefix = g_convert_with_iconv (prefix, -1, priv->converter, NULL, NULL, NULL);
-    prefix_len = strlen (ascii_prefix);
+    folded_prefix = g_utf8_casefold (prefix, -1);
+    prefix_len = strlen (folded_prefix);
   }
 
   do {
@@ -509,12 +505,12 @@ entry_on_text_changed (GtkEditable * editable,
     found = g_str_has_prefix (text, prefix);
 
     if (!found && !found_suggestion && priv->smart_match) {
-      gchar *ascii_text = g_convert_with_iconv (text, -1, priv->converter, NULL, NULL, NULL);
-      found_suggestion = !g_ascii_strncasecmp (ascii_text, ascii_prefix, prefix_len);
+      gchar *folded_text = g_utf8_casefold (text, -1);
+      found_suggestion = !strncmp (folded_text, folded_prefix, prefix_len);
       if (found_suggestion) {
         iter_suggested = iter;
       }
-      g_free (ascii_text);
+      g_free (folded_text);
     }
 
     g_free (text);
@@ -535,7 +531,7 @@ entry_on_text_changed (GtkEditable * editable,
   g_signal_handler_unblock (selector, priv->signal_id);
 
   if (priv->smart_match) {
-    g_free (ascii_prefix);
+    g_free (folded_prefix);
   }
 }
 
