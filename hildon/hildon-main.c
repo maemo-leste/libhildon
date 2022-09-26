@@ -100,7 +100,7 @@ hildon_init (void)
   static gboolean initialized = FALSE;
 
   if (initialized) {
-    g_critical ("Tried to initialized Hildon more than once.");
+    g_warning ("Tried to initialized Hildon more than once.");
     return;
   } else {
     initialized = TRUE;
