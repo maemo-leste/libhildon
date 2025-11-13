@@ -506,7 +506,7 @@ hildon_banner_constructor                       (GType type,
                         g_object_ref (banner), g_object_unref); 
             } else {
                 g_assert (global_timed_banner == NULL);
-                global_timed_banner = g_object_ref (banner);
+                global_timed_banner = (GtkWidget*)g_object_ref (banner);
             }
         }
     }
