@@ -1,3 +1,9 @@
+libhildon (2.2.30) unstable; urgency=medium
+
+  * Fix compilation with Excalibur
+
+ -- Merlijn Wajer <merlijn@wizzup.org>  Thu, 13 Nov 2025 02:02:23 +0100
+
 libhildon (2.2.29) unstable; urgency=medium
 
   * HildonTouchSelectorEntry: Fix smart_search segfault
